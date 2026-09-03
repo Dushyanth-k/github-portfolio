@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dushyanth K | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* --- Developer Dark Purple 3D Theme --- */
+    :root {
+      --bg-dark: #0a0510;
+      --card-bg: #150a21;
+      --text-main: #e2d8ee;
+      --text-muted: #9f8eb3;
+      --accent: #a855f7;
+      --accent-glow: rgba(168, 85, 247, 0.4);
+      --terminal-header: #1f1130;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: radial-gradient(rgba(168, 85, 247, 0.15) 1px, transparent 1px);
+      background-size: 30px 30px;
+      position: relative;
+    }
+
+    /* 3D Background Glowing Orbs */
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -1;
+      opacity: 0.4;
+      animation: float 6s ease-in-out infinite;
+    }
+    .orb-1 {
+      top: 10%; left: 10%;
+      width: 300px; height: 300px;
+      background: #7e22ce;
+    }
+    .orb-2 {
+      bottom: 20%; right: 10%;
+      width: 400px; height: 400px;
+      background: #581c87;
+      animation-delay: 2s;
+    }
+
+    /* --- Navigation --- */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.5rem 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 5, 16, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+      display: flex;
+    }
+    .logo-accent {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* --- Base Section Styles --- */
+    section {
+      padding: 8rem 10% 4rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 2.5rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-shadow: 0 0 10px var(--accent-glow);
+    }
+    
+    .section-title::before {
+      content: '</>';
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 1.8rem;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 3rem;
+    }
+
+    .hero-content {
+      flex: 1.2;
+      perspective: 1000px;
+      text-align: left; 
+      min-height: 250px; 
+    }
+
+    .mono-tag {
+      font-family: 'Courier New', Courier, monospace;
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      display: block;
+      text-shadow: 0 0 5px var(--accent-glow);
+      min-height: 1.5rem;
+    }
+
+    .hero-content h1 {
+      font-size: 4.5rem;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -1.5px;
+      min-height: 5rem;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      min-height: 4rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: flex-start;
+    }
+
+    .icon-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: transparent;
+      border: 2px solid var(--accent);
+      color: var(--text-main);
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.1);
+    }
+
+    .icon-btn:hover {
+      background-color: var(--accent);
+      color: #000;
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 10px 20px var(--accent-glow);
+    }
+
+    .hero-img-container {
+      flex: 0.8;
+      display: flex;
+      justify-content: flex-end; 
+    }
+
+    .hero-img {
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      box-shadow: 0 15px 35px var(--accent-glow);
+      filter: grayscale(15%);
+      transition: all 0.5s ease;
+      animation: gentle-float 4s ease-in-out infinite;
+    }
+    
+    .hero-img:hover {
+      filter: grayscale(0%);
+      border-color: #fff;
+      box-shadow: 0 20px 45px rgba(168, 85, 247, 0.6);
+    }
+
+    /* --- About / 3D Terminal Section --- */
+    .terminal-wrapper {
+      perspective: 1000px;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .terminal {
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out; 
+    }
+
+    .terminal-header {
+      background-color: var(--terminal-header);
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+      transform: translateZ(20px);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .dot.red { background-color: #ff5f56; }
+    .dot.yellow { background-color: #ffbd2e; }
+    .dot.green { background-color: #27c93f; }
+
+    .terminal-title {
+      flex: 1;
+      text-align: center;
+      font-family: monospace;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .terminal-body {
+      padding: 2rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.05rem;
+      color: var(--text-main);
+      transform: translateZ(30px);
+      min-height: 200px;
+    }
+
+    .prompt {
+      color: var(--accent);
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .comment {
+      color: #6b7280;
+      margin-top: 1rem;
+      display: block;
+    }
+
+    .string {
+      color: #34d399;
+    }
+
+    /* --- Skills Section --- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      perspective: 1000px;
+    }
+
+    .skill-card {
+      background-color: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out, border-color 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      min-height: 180px;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      transform: translateZ(30px);
+    }
+
+    .skill-header h3 {
+      font-size: 1.5rem;
+      color: var(--text-main);
+    }
+
+    .skill-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      transform: translateZ(20px);
+    }
+
+    /* --- Footer --- */
+    footer {
+      padding: 4rem 10% 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(168, 85, 247, 0.1);
+      margin-top: 4rem;
+      position: relative;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-icons a {
+      color: var(--text-muted);
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .footer-icons a:hover {
+      color: var(--accent);
+      transform: translateY(-5px);
+      text-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .copyright {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-family: monospace;
+    }
+
+    /* --- Animations --- */
+    @keyframes gentle-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-20px, 20px); }
+    }
+
+    /* Blinking cursor for typewriter effect */
+    .typing-cursor::after {
+      content: '|';
+      color: var(--accent);
+      animation: blink 1s step-end infinite;
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      .hero-content h1 { font-size: 3rem; }
+      .hero-content p { margin-bottom: 2rem; }
+      .hero-img-container { 
+        justify-content: flex-end; 
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+      .hero-img { width: 250px; height: 250px; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+
+  <header>
+    <div class="logo">
+      <span class="tw">Dushyanth</span>&nbsp;<span class="logo-accent tw">K.</span>
+    </div>
+    <nav>
+      <a href="#home" class="tw">/home</a>
+      <a href="#about" class="tw">/about</a>
+      <a href="#skills" class="tw">/skills</a>
+      <a href="#contact" class="tw">/contact</a>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-content fade-up">
+      <span class="mono-tag tw">> Initializing profile...</span>
+      <h1 class="tw">Dushyanth K.</h1>
+      <p class="tw">A software engineering student at SRM IST RMP, focused on building the future through AI, Machine Learning, and highly optimized code.</p>
+      
+      <div class="social-icons fade-up">
+        <a href="https://github.com/Dushyanth-k" target="_blank" class="icon-btn" title="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/dushyanth-k-516b5742a/" target="_blank" class="icon-btn" title="LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:dushyanth20008@gmail.com" class="icon-btn" title="Gmail">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+    
+    <div class="hero-img-container fade-up">
+      <img src="profile.jpeg" alt="Dushyanth K" class="hero-img">
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title fade-up tw">About_Me</h2>
+    <div class="terminal-wrapper fade-up">
+      <div class="terminal interactive-3d">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="terminal-title tw">dushyanth@portfolio: ~</div>
+        </div>
+        <div class="terminal-body">
+          <span class="comment tw"># Current Status</span><br>
+          <span class="prompt tw">~ $</span> <span class="tw">cat education.txt</span><br>
+          <span class="tw">Studying at SRM Institute of Science and Technology, Ramapuram (SRM IST RMP).</span><br><br>
+          
+          <span class="comment tw"># Areas of Interest</span><br>
+          <span class="prompt tw">~ $</span> <span class="tw">python3 -c "print('AI & Machine Learning')"</span><br>
+          <span class="string tw">AI & Machine Learning</span><br>
+          <span class="tw">I am fascinated by how algorithms can learn from data. My goal is to bridge the gap between complex mathematics and efficient software engineering.</span><br><br>
+
+          <span class="prompt tw">~ $</span> <span class="typing-cursor"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title fade-up tw">Tech_Stack</h2>
+    <div class="skills-grid">
+      
+      <div class="skill-card interactive-3d fade-up">
+        <div class="skill-header">
+          <h3 class="tw">Python</h3>
+          <i class="fa-brands fa-python" style="color: var(--accent); font-size: 1.8rem;"></i>
+        </div>
+        <p class="tw">My primary language for tackling AI and Machine Learning problems. Experienced in data manipulation, scripting, and implementing core logic.</p>
+      </div>
+      
+      <div class="skill-card interactive-3d fade-up">
+        <div class="skill-header">
+          <h3 class="tw">C</h3>
+          <i class="fa-solid fa-c" style="color: var(--accent); font-size: 1.8rem;"></i>
+        </div>
+        <p class="tw">The foundation of my computer science knowledge. Proficient in memory management, data structures, and writing highly optimized code.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="footer-icons fade-up">
+      <a href="mailto:dushyanth20008@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://github.com/Dushyanth-k" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/dushyanth-k-516b5742a/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+    <p class="copyright fade-up tw">git commit -m "Designed by Dushyanth K &copy; 2026"</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // 1. Setup Typewriter Elements
+      const typeElements = document.querySelectorAll('.tw');
+      
+      // Store original text and clear the elements initially
+      typeElements.forEach(el => {
+        el.setAttribute('data-text', el.textContent.trim());
+        el.textContent = ''; 
+      });
+
+      // The new variable speed typewriter function
+      function typeWriter(element) {
+        if (element.classList.contains('typing-done')) return;
+        element.classList.add('typing-done'); // Prevent re-typing
+
+        const text = element.getAttribute('data-text');
+        let i = 0;
+        
+        // Add typing cursor class while typing
+        element.classList.add('typing-cursor');
+
+        function type() {
+          if (i < text.length) {
+            let char = text.charAt(i);
+            element.textContent += char;
+            i++;
+            
+            // Calculate a random speed between 10ms and 60ms (fast & slow bursts)
+            let currentSpeed = Math.random() * 50 + 10; 
+            
+            // If the character is punctuation, pause slightly longer to mimic natural typing
+            if (char === '.' || char === ',' || char === '!' || char === '?') {
+               currentSpeed += 250; 
+            } else if (char === ' ') {
+               currentSpeed += 40; // Slight pause on spaces
+            }
+
+            setTimeout(type, currentSpeed);
+          } else {
+            // Remove cursor when finished typing
+            element.classList.remove('typing-cursor');
+          }
+        }
+        type();
+      }
+
+      // 2. Intersection Observer for Scroll Animations & Typewriter trigger
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            
+            // Handle Fade up animation
+            if(entry.target.classList.contains('fade-up')) {
+              entry.target.classList.add('visible');
+            }
+
+            // Trigger Typewriter if the element itself is .tw
+            if (entry.target.classList.contains('tw')) {
+               typeWriter(entry.target);
+            }
+
+            // Trigger Typewriter for any .tw elements inside the faded-up container
+            const innerTw = entry.target.querySelectorAll('.tw');
+            innerTw.forEach(el => typeWriter(el));
+
+            // Stop observing once animated
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      // Observe elements
+      document.querySelectorAll('.fade-up, .tw').forEach((el) => {
+        observer.observe(el);
+      });
+
+      // 3. 3D Mouse Movement effect for Terminal and Cards
+      const interactiveElements = document.querySelectorAll('.interactive-3d');
+      
+      interactiveElements.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left; 
+          const y = e.clientY - rect.top;  
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          // Calculate rotation (max 10 degrees)
+          const rotateX = ((y - centerY) / centerY) * -10; 
+          const rotateY = ((x - centerX) / centerX) * 10;
+          
+          el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        });
+        
+        el.addEventListener('mouseleave', () => {
+          // Snap back to original position
+          el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
